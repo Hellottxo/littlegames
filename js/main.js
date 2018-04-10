@@ -26,12 +26,12 @@ SD.prototype={  //为SD对象添加原型函数
 	again:function(){
 		//重玩本局
 		this.errorArr = [];
-		$(".sdli").removeClass('bg_red blankCell');		
+		$(".sdli").removeClass('lineSelected blankCell wrong');		
 		this.createBlankCells();
 	},
 	setLevel:function(){
 		//用户输入难度。
-		$('#myModal').modal('show');
+		$('.level-modal').modal('show');
 	},
 	createSdArr:function(){
 		//生成数独数组。
@@ -154,7 +154,7 @@ SD.prototype={  //为SD对象添加原型函数
 			x = parseInt(blankArr[i]/10);
 			y = blankArr[i]%10;	
 			dom = $(".sd").eq(y-1).find(".sdli").eq(x-1);
-			dom.attr('contenteditable', true).html('').addClass('blankCell');		
+			dom.attr('contenteditable',true).html('').addClass('blankCell');		
 			this.backupSdArr[blankArr[i]] = undefined;
 		}
 
@@ -162,7 +162,7 @@ SD.prototype={  //为SD对象添加原型函数
             $('.sdli[contenteditable=true]').removeClass('selected');   
             $(this).addClass('selected');
             var y = $(this).index();
-            $('.sdli').removeClass('lineSelected');
+            $('.sdli').removeClass('lineSelected wrong');
 			$(this).parent().find('.sdli').addClass('lineSelected');
 			for(i=0;i<9;i++){
 				var change = $('.soduku').find('.sd').eq(i);
@@ -195,11 +195,17 @@ SD.prototype={  //为SD对象添加原型函数
 		}
 		done = this.isAllInputed();
 		if(this.errorArr.length == 0 && done ){
-			alert('you win!');
-			$(".bg_red").removeClass('bg_red');
+			$('.gameinfo').html('你赢啦<img src="img/win.gif" alt="">');
+			$('.isWin').html('小意思,再来一把');
+			$('.undone').modal('show');
+			$('.isWin').click(function(){
+				sd.setLevel();
+			});
 		}else{
 			if(!done){
-				alert("你没有完成游戏！");
+				$('.gameinfo').html('游戏<br>未完成</br><img class="win" src="img/air.gif" alt="">');
+				$('.isWin').html('人家再试试');
+				$('.undone').modal('show');
 			}
 			this.showErrors();
 		}
@@ -244,12 +250,13 @@ SD.prototype={  //为SD对象添加原型函数
 	showErrors:function(){
 		//把错误显示出来。
 		var errorArr = this.errorArr,len = this.errorArr.length,x,y,dom;
-		$(".bg_red").removeClass('bg_red');
 		for(var i =0;i<len;i++){
 			x = parseInt(errorArr[i]/10);
 			y = errorArr[i]%10;	
-			dom = $(".sd").eq(y-1).find(".sdli").eq(x-1);
-			dom.addClass('bg_red');
+			$('.gameinfo').html('Boom~<br>错误</br><img class="win" src="img/wrong.gif" alt="">');
+			$('.isWin').html('我瞅瞅');
+			$('.undone').modal('show');
+			$(".sd").eq(y-1).find(".sdli").eq(x-1).addClass('wrong');
 		}
 	},
 	createDoms:function(){
@@ -276,7 +283,7 @@ SD.prototype={  //为SD对象添加原型函数
             }else if(i>5 && i<10){
                 $('.numsecond').append(num);
             }else{
-                var f = '<button type="button" class="btn col" id="clear"><img src="img/x.png" alt=""></button>';
+                var f = '<button type="button" class="btn col"><img src="img/x.png" id="clear" class="num" alt=""></button>';
                 $('.numsecond').append(f)
             }
         }
@@ -336,7 +343,9 @@ function　arrMinus(arr1,arr2){
 	return resArr;
 }
 
-
+$(".sdli[contenteditable=true]").focus(function(){
+	document.activeElement.blur();
+});
 
 // 模态框按钮
 $('.setLevel-wrap').click(function(){

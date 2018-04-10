@@ -19,7 +19,7 @@
 
                 <!-- 模态框头部 -->
                 <div class="modal-header">
-                    <h4 class="modal-title level-modal-title">选择一个游戏难度吧！</h4>
+                    <h4 class="modal-title level-modal-title">选择游戏难度٩(๑´0`๑)۶</h4>
                     <!-- <button name="submit" type="button" class="close" data-dismiss="modal">&times;</button> -->
                 </div>
 
@@ -39,18 +39,33 @@
                         <label for="Level3">
                             <input id="Level3" type="radio" name="set-level" value="50">困难
                         </label>
-                    
                     </div>
                 </div>
 
                 <!-- 模态框底部 -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary levelSubmit" data-dismiss="modal">确定</button>
+                    <button type="button" class="btn btn-secondary levelSubmit" data-dismiss="modal">就这样吧</button>
                 </div>
-
             </div>
         </div>
     </div>
+
+    <!-- 游戏是否完成 -->
+    <div class="modal fade undone" aria-hidden="true" data-backdrop="static" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content level-modal-content">
+                <!-- 模态框主体 -->
+                <div class="modal-body gameinfo">
+                </div>
+
+                <!-- 模态框底部 -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary isWin" data-dismiss="modal"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container group">
         <div class="row">
             <button class="col" onclick="sd.checkRes();">
@@ -90,7 +105,7 @@
                 var beginTime = new Date().getTime();
                 sd.createSdArr();
                 console.log("数独生成完毕，耗时：" + ((new Date().getTime()) - beginTime) / 1000 + "秒！");
-                $(".sdli").removeClass('bg_red blankCell');
+                $(".sdli").removeClass('lineSelected blankCell wrong');
                 sd.blankNum = parseInt($('input[name="set-level"]:checked').attr('value'));
                 $(".sdli[contenteditable=true]").prop('contenteditable', false);
                 sd.drawCells();

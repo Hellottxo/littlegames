@@ -1,3 +1,13 @@
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {   
+    outline: none;   
+    border-color: transparent;  
+    box-shadow:none;
+}
 
 .container {
     margin-top: 20px;
@@ -67,7 +77,7 @@ ul,li{
 }
 
 .group {
-    margin-top: 20%;
+    margin-top: 10%;
 }
 
 .group button {
@@ -135,4 +145,13 @@ label {
 
 .levelSubmit:hover {
     background: #000;
+}
+
+.gameinfo {
+    font-size: 40px;
+    text-align: center;
+}
+
+.wrong {
+    background: #ffcc00;
 }
