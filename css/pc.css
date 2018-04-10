@@ -1,0 +1,24 @@
+.fun {
+    display: none;
+}
+
+.set {
+    border: 4px solid #555;
+    border-radius: 40px;
+    font-size: 50px;
+    line-height: 80px;
+}
+
+.sdli {
+    font-size: 45px;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 750px;
+}
+
+.group,.soduku {
+    margin-top: 30px;
+}
+

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" media="(max-width:600px)" href="css/mobile.css">
+    <link rel="stylesheet" media="(min-width:600px)" href="css/pc.css">
+    <title>T.O.数独</title>
+</head>
+
+<body>
+    <div class="modal fade level-modal" aria-hidden="true" data-backdrop="static" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content level-modal-content">
+
+                <!-- 模态框头部 -->
+                <div class="modal-header">
+                    <h4 class="modal-title level-modal-title">选择一个游戏难度吧！</h4>
+                    <!-- <button name="submit" type="button" class="close" data-dismiss="modal">&times;</button> -->
+                </div>
+
+                <!-- 模态框主体 -->
+                <div class="modal-body">
+                    <div class="setLevel-wrap active">
+                        <label for="Level1">
+                            <input id="Level1" type="radio" name="set-level" value="20" checked="checked">简单
+                        </label>
+                    </div>
+                    <div class="setLevel-wrap">
+                        <label for="Level2">
+                            <input id="Level2" type="radio" name="set-level" value="35">普通
+                        </label>                    
+                    </div>
+                    <div class="setLevel-wrap">
+                        <label for="Level3">
+                            <input id="Level3" type="radio" name="set-level" value="50">困难
+                        </label>
+                    
+                    </div>
+                </div>
+
+                <!-- 模态框底部 -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary levelSubmit" data-dismiss="modal">确定</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="container group">
+        <div class="row">
+            <button class="col" onclick="sd.checkRes();">
+                <div class="set">完成</div>
+            </button>
+            <button class="col" onclick="sd.reset();">
+                <div class="set">重置</div>
+            </button>
+            <button class="col" onclick="sd.again();">
+                <div class="set">重玩</div>
+            </button>
+        </div>
+    </div>
+    <div class="container soduku"></div>
+    <div class="container fun">
+        <div class="row numfirst">
+        </div>
+        <div class="row numsecond">
+        </div>
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+
+        var sd = new SD;
+        var isFirst = true;
+        $('#myModal').modal('show');
+        $('.levelSubmit').click(function () {
+            if (isFirst == true) {
+                var num = parseInt($('input[name="set-level"]:checked').attr('value'));
+                sd.init(num);
+                isFirst = false;
+            } else {
+                sd.errorArr = [];
+                var beginTime = new Date().getTime();
+                sd.createSdArr();
+                console.log("数独生成完毕，耗时：" + ((new Date().getTime()) - beginTime) / 1000 + "秒！");
+                $(".sdli").removeClass('bg_red blankCell');
+                sd.blankNum = parseInt($('input[name="set-level"]:checked').attr('value'));
+                $(".sdli[contenteditable=true]").prop('contenteditable', false);
+                sd.drawCells();
+                sd.createBlank(sd.blankNum);
+                sd.createBlankCells();
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>

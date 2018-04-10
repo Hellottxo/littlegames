@@ -1,0 +1,138 @@
+
+.container {
+    margin-top: 20px;
+    margin-bottom:20px;
+}
+button {
+    background: none;
+    cursor: pointer;
+}
+
+.row {
+    margin: 0;
+}
+
+ul,li{
+    list-style: none;	
+    margin: 0;
+    padding: 0;		
+}
+
+.num {
+    border-radius: 50%; 
+    font-size: 26px;
+    border: 2px solid #000;
+    color: #000;
+}
+
+.col img {
+    width: 100%;
+}
+
+
+.sd {
+    font-size: 26px;
+}
+
+.sdli {
+    border: 1px solid #000;
+    text-align: center;
+    padding: 0;
+    color: #555;
+}
+
+.bl{
+    border-left-color:#000;
+    border-left-width: 3px;
+    border-left-style: solid;
+}
+.bt{
+    border-top-color:#000;
+    border-top-width: 3px;
+    border-top-style: solid;
+}
+.br{
+    border-right-color:#000;
+    border-right-width: 3px;
+    border-right-style: solid;
+}
+.bb{
+    border-bottom-color:#000;
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
+}
+
+.blankCell {
+    background: #eee;
+}
+
+.group {
+    margin-top: 20%;
+}
+
+.group button {
+    border: none;
+}
+
+.set {
+    color: #555;
+    border-radius: 20px;
+    border: 2px solid #555;
+}
+
+.set:hover {
+    color: #000;
+    transition: all 0.5s;
+}
+
+.lineSelected {
+    color: #d04a25;
+}
+
+input {
+    display:none;
+}
+
+.setLevel-wrap {
+    border: 5px solid #000;
+    border-radius: 25px;
+    margin: 30px 70px;
+    
+}
+
+label {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    line-height: 40px;
+    font-size: 26px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.setLevel-wrap:hover {
+    background: #000;
+    transition: all 0.3s;
+    color: #fff;
+}
+
+.active {
+    background: #000;
+    color: #fff;
+}
+
+.level-modal-content {
+    border: none;
+    width: 90%;
+    margin: 30% 20px 0 20px;
+}
+
+.levelSubmit {
+    background: #555;
+    border: none;
+    width: 100px;
+}
+
+.levelSubmit:hover {
+    background: #000;
+}
