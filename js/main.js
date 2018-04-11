@@ -17,7 +17,8 @@ SD.prototype={  //为SD对象添加原型函数
 		this.createBlank(this.blankNum);
         this.createBlankCells();
         this.createButtons();
-        this.addStyle();
+		this.addStyle();
+		this.isMobile();
 	},
 	reset:function(){
 		//重置程序。
@@ -158,8 +159,8 @@ SD.prototype={  //为SD对象添加原型函数
 			this.backupSdArr[blankArr[i]] = undefined;
 		}
 
-		$(".sdli[contenteditable=true]").click(function(event) {
-            $('.sdli[contenteditable=true]').removeClass('selected');   
+		$(".blankCell").click(function(event) {
+            $('.sdli').removeClass('selected');   
             $(this).addClass('selected');
             var y = $(this).index();
             $('.sdli').removeClass('lineSelected wrong');
@@ -263,7 +264,7 @@ SD.prototype={  //为SD对象添加原型函数
         // 生成九宫格
 		String.prototype.times = String.prototype.times || function(n) { return (new Array(n+1)).join(this);}; 
         var html = ('<div class="row sd clearfix">' + 
-        '<div class="col sdli"></div>'.times(9) + '</div>').times(9);
+		'<div class="col sdli"><input type="text" class="numInput"></div >'.times(9) + '</div>').times(9);
 		$(".soduku").prepend(html);
 		
 		//九宫格添加样式
@@ -297,7 +298,13 @@ SD.prototype={  //为SD对象添加原型函数
 		btHeight = parseInt(sdWidth)+2;
 		$('.bb,.bt').css({'height':btHeight});
 		$('.br,.bl').css({'width':btHeight});
-    }
+	},
+	isMobile:function(){
+		var windowWidth = $(window).width();
+		if (windowWidth < 600){
+			$(".sdli[contenteditable=true]").prop('contenteditable', false);
+		}
+	}
 }
 
 // 点击数字填写
@@ -333,7 +340,7 @@ function getConnect(arr1,arr2){
 }
 
 //两个简单数组差集，arr1为大数组
-function　arrMinus(arr1,arr2){
+function arrMinus(arr1,arr2){
 	var resArr = [],len = arr1.length;
 	for(var i=0;i<len;i++){
 		if($.inArray(arr1[i], arr2)<0){
@@ -342,10 +349,6 @@ function　arrMinus(arr1,arr2){
 	}
 	return resArr;
 }
-
-$(".sdli[contenteditable=true]").focus(function(){
-	document.activeElement.blur();
-});
 
 // 模态框按钮
 $('.setLevel-wrap').click(function(){

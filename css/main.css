@@ -73,7 +73,7 @@ ul,li{
 }
 
 .blankCell {
-    background: #eee;
+    background: #ccc;
 }
 
 .group {
@@ -97,6 +97,10 @@ ul,li{
 
 .lineSelected {
     color: #d04a25;
+}
+
+.selected {
+    border-color: #d04a25;
 }
 
 input {
@@ -134,7 +138,7 @@ label {
 .level-modal-content {
     border: none;
     width: 90%;
-    margin: 30% 20px 0 20px;
+    margin: 15% 20px 0 20px;
 }
 
 .levelSubmit {
@@ -155,3 +159,4 @@ label {
 .wrong {
     background: #ffcc00;
 }
+
