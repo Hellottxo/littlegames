@@ -105,12 +105,13 @@
                 var beginTime = new Date().getTime();
                 sd.createSdArr();
                 console.log("数独生成完毕，耗时：" + ((new Date().getTime()) - beginTime) / 1000 + "秒！");
-                $(".sdli").removeClass('lineSelected blankCell wrong');
+                $(".sdli").removeClass('selected lineSelected blankCell wrong');
                 sd.blankNum = parseInt($('input[name="set-level"]:checked').attr('value'));
                 $(".sdli[contenteditable=true]").prop('contenteditable', false);
                 sd.drawCells();
                 sd.createBlank(sd.blankNum);
                 sd.createBlankCells();
+                sd.isMobile();
             }
         })
 

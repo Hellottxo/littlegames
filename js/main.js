@@ -27,8 +27,9 @@ SD.prototype={  //为SD对象添加原型函数
 	again:function(){
 		//重玩本局
 		this.errorArr = [];
-		$(".sdli").removeClass('lineSelected blankCell wrong');		
+		$(".sdli").removeClass('selected lineSelected blankCell wrong');		
 		this.createBlankCells();
+		this.isMobile();
 	},
 	setLevel:function(){
 		//用户输入难度。
